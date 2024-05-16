@@ -1,0 +1,61 @@
+@startuml mastery_task_03_CD
+
+class Packaging {
+    abstract boolean canFitItem(Item item)
+    abstract BigDecimal getMass()
+}
+
+class Box {
+    - length: BigDecimal
+    - width: BigDecimal
+    - height: BigDecimal
+    - material: Material
+
+    + Box(length: BigDecimal, width: BigDecimal, height: BigDecimal, material: Material)
+    + canFitItem(Item item): boolean
+    + getMass(): BigDecimal
+}
+
+class PolyBag {
+    - volume: BigDecimal
+    - material: Material
+
+    + PolyBag(volume: BigDecimal, material: Material)
+    + canFitItem(Item item): boolean
+    + getMass(): BigDecimal
+}
+
+enum Material {
+    CORRUGATE
+    LAMINATED_PLASTIC
+}
+
+class PackagingDatastore {
+    + createFcPackagingOption(length: BigDecimal, width: BigDecimal, height: BigDecimal, material: Material): Packaging
+}
+
+class MonetaryCostStrategy {
+    - static final LABOR_COST: BigDecimal
+    - static final materialCostPerGram: Map<Material, BigDecimal>
+
+    + getCost(packaging: Packaging): BigDecimal
+}
+
+class Item {
+    - length: BigDecimal
+    - width: BigDecimal
+    - height: BigDecimal
+
+    + Item(length: BigDecimal, width: BigDecimal, height: BigDecimal)
+    + getLength(): BigDecimal
+    + getWidth(): BigDecimal
+    + getHeight(): BigDecimal
+}
+Packaging -- Material
+Packaging <|-- Box
+Packaging <|-- PolyBag
+PackagingDatastore ..> Packaging
+MonetaryCostStrategy ..> Packaging
+MonetaryCostStrategy ..> Material
+
+@enduml
