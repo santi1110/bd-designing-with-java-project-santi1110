@@ -32,7 +32,11 @@ public class Item {
      */
     private BigDecimal height;
 
-    private Item(Builder builder) {
+    /**
+     *
+     * @param builder item.
+     */
+    public Item(Builder builder) {
         asin = builder.asin;
         description = builder.description;
         length = builder.length;

@@ -7,18 +7,29 @@ public class Box extends Packaging {
     private BigDecimal width;
     private BigDecimal height;
 
+
+    public BigDecimal getLength() {
+        return length;
+    }
+    public BigDecimal getWidth() {
+        return width;
+    }
+    public BigDecimal getHeight() {
+        return height;
+    }
     /**
-     *
-     * @param material of the box.
-     * @param length of the box.
-     * @param width of the box.
-     * @param height of the box.
+     *  @param height   The height of the box.
+     * @param length   The length of the box.
+     * @param width    The width of the box.
+
+     * @param material The material of the box.
+
      */
-    public Box(Material material, BigDecimal length, BigDecimal width, BigDecimal height) {
+    public Box(Material material, BigDecimal height, BigDecimal length, BigDecimal width) {
         super(material);
+        this.height = height;
         this.length = length;
         this.width = width;
-        this.height = height;
     }
 
     @Override
