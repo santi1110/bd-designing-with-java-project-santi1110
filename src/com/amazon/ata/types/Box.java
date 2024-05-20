@@ -3,10 +3,25 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Box extends Packaging {
+    private BigDecimal height;
     private BigDecimal length;
     private BigDecimal width;
-    private BigDecimal height;
 
+
+
+    /**
+     *  @param height   The height of the box.
+     * @param length   The length of the box.
+     * @param width    The width of the box.
+     * @param material The material of the box.
+
+     */
+    public Box(Material material, BigDecimal length, BigDecimal width, BigDecimal height) {
+        super(material);
+        this.length = length;
+        this.width = width;
+        this.height = height;
+    }
 
     public BigDecimal getLength() {
         return length;
@@ -16,20 +31,6 @@ public class Box extends Packaging {
     }
     public BigDecimal getHeight() {
         return height;
-    }
-    /**
-     *  @param height   The height of the box.
-     * @param length   The length of the box.
-     * @param width    The width of the box.
-
-     * @param material The material of the box.
-
-     */
-    public Box(Material material, BigDecimal height, BigDecimal length, BigDecimal width) {
-        super(material);
-        this.height = height;
-        this.length = length;
-        this.width = width;
     }
 
     @Override
