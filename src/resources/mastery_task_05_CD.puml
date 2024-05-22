@@ -1,0 +1,70 @@
+@startuml
+
+interface CostStrategy {
+    + getCost(ShipmentOption): ShipmentCost
+}
+
+class ShipmentOption {
+    - packaging: Packaging
+    - items: List<Item>
+    + getPackaging(): Packaging
+    + getItems(): List<Item>
+}
+
+class ShipmentCost {
+    - shipmentOption: ShipmentOption
+    - cost: BigDecimal
+    + getShipmentOption(): ShipmentOption
+    + getCost(): BigDecimal
+}
+
+abstract class Packaging {
+    - material: Material
+    + getMaterial(): Material
+    + canFitItem(Item): boolean
+    + getMass(): BigDecimal
+}
+
+class Material {
+    <<enumeration>>
+    + CORRUGATE
+    + LAMINATED_PLASTIC
+    + POLYBAG
+}
+
+class Item {
+    - length: BigDecimal
+    - width: BigDecimal
+    - height: BigDecimal
+    + getLength(): BigDecimal
+    + getWidth(): BigDecimal
+    + getHeight(): BigDecimal
+}
+
+class CarbonCostStrategy {
+    implements CostStrategy
+    + getCost(ShipmentOption): ShipmentCost
+}
+
+class MonetaryCostStrategy {
+    implements CostStrategy
+    + getCost(ShipmentOption): ShipmentCost
+}
+
+class WeightedCostStrategy {
+    - costRatio: Map<Material, BigDecimal>
+    - strategyWeights: Map<CostStrategy, BigDecimal>
+    + getCost(ShipmentOption): ShipmentCost
+    + setCostRatio(Material, BigDecimal): void
+    + setStrategyWeight(CostStrategy, BigDecimal): void
+}
+
+CostStrategy <|.. CarbonCostStrategy
+CostStrategy <|.. MonetaryCostStrategy
+CostStrategy <|.. WeightedCostStrategy
+Packaging <|-- PolyBag
+Packaging <|-- B2KBox
+WeightedCostStrategy *-- CarbonCostStrategy
+WeightedCostStrategy *-- MonetaryCostStrategy
+
+@enduml

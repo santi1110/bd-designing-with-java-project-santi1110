@@ -32,6 +32,8 @@ class PackagingDatastoreTest {
 
     Packaging polybag2000 = new PolyBag(Material.POLYBAG, BigDecimal.valueOf(2000));
     Packaging polybag10000 = new PolyBag(Material.POLYBAG, BigDecimal.valueOf(10000));
+    Packaging polybag5000 = new PolyBag(Material.POLYBAG, BigDecimal.valueOf(5000));
+    Packaging polybag6000 = new PolyBag(Material.POLYBAG, BigDecimal.valueOf(6000));
 
     FcPackagingOption ind1_10Cm = new FcPackagingOption(ind1, package10Cm);
     FcPackagingOption abe2_20Cm = new FcPackagingOption(abe2, package20Cm);
@@ -39,19 +41,33 @@ class PackagingDatastoreTest {
     FcPackagingOption yow4_10Cm = new FcPackagingOption(yow4, package10Cm);
     FcPackagingOption yow4_20Cm = new FcPackagingOption(yow4, package20Cm);
     FcPackagingOption yow4_60Cm = new FcPackagingOption(yow4, package60Cm);
-    FcPackagingOption iad2_20Cm = new FcPackagingOption(iad2, package20Cm);
+    FcPackagingOption iad2_20Cm = new FcPackagingOption(iad2, package20Cm);;
     FcPackagingOption pdx1_40Cm = new FcPackagingOption(pdx1, package40Cm);
     FcPackagingOption pdx1_60Cm = new FcPackagingOption(pdx1, package60Cm);
     FcPackagingOption iad2_2000Polybag = new FcPackagingOption(iad2, polybag2000);
     FcPackagingOption iad2_10000Polybag = new FcPackagingOption(iad2, polybag10000);
+    FcPackagingOption iad2_5000Polybag = new FcPackagingOption(iad2, polybag5000);
+    FcPackagingOption yow4_2000Polybag = new FcPackagingOption(yow4, polybag2000);
+    FcPackagingOption yow4_5000Polybag = new FcPackagingOption(yow4, polybag5000);
+    FcPackagingOption yow4_10000Polybag = new FcPackagingOption(yow4, polybag10000);
+    FcPackagingOption ind1_2000Polybag = new FcPackagingOption(ind1, polybag2000);
+    FcPackagingOption ind1_5000Polybag = new FcPackagingOption(ind1, polybag5000);
+    FcPackagingOption abe2_2000Polybag = new FcPackagingOption(abe2, polybag2000);
+    FcPackagingOption abe2_6000Polybag = new FcPackagingOption(abe2, polybag6000);
+    FcPackagingOption pdx1_5000Polybag = new FcPackagingOption(pdx1, polybag5000);
+    FcPackagingOption pdx1_10000Polybag = new FcPackagingOption(pdx1, polybag10000);
+
 
 
     @Test
     public void getFcPackagingOptions_get_returnAllOptions() {
         // GIVEN
         PackagingDatastore packagingDatastore = new PackagingDatastore();
-        List<FcPackagingOption> expectedPackagingOptions = Arrays.asList(ind1_10Cm, abe2_20Cm, abe2_40Cm, yow4_10Cm,
-                yow4_20Cm, yow4_60Cm, iad2_20Cm, iad2_20Cm, pdx1_40Cm, pdx1_60Cm, pdx1_60Cm, iad2_2000Polybag, iad2_10000Polybag);
+        List<FcPackagingOption> expectedPackagingOptions = Arrays.asList(
+                ind1_10Cm, abe2_20Cm, abe2_40Cm, yow4_10Cm, yow4_20Cm, yow4_60Cm, iad2_20Cm, iad2_20Cm, pdx1_40Cm,
+                pdx1_60Cm, pdx1_60Cm, iad2_2000Polybag, iad2_10000Polybag, iad2_5000Polybag, yow4_2000Polybag,
+                yow4_5000Polybag, yow4_10000Polybag, ind1_2000Polybag, ind1_5000Polybag, abe2_2000Polybag,
+                abe2_6000Polybag, pdx1_5000Polybag, pdx1_10000Polybag, yow4_5000Polybag);
 
         // WHEN
         List<FcPackagingOption> fcPackagingOptions = packagingDatastore.getFcPackagingOptions();
